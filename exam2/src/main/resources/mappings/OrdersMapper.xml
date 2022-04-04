@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OrdersDAO">
+
+<!-- 등록 -->
+<insert id="insertOrders">
+ 	<selectKey keyProperty="ord_no" resultType="int" order="BEFORE">
+        SELECT MAX(ORD_NO) + 1 FROM TBL_ORDERS
+    </selectKey>
+	INSERT INTO TBL_ORDERS (ORD_NO,
+						CUSTOMER,		
+						ORD_DTTM,
+						ORD_GOODS,
+						ORD_CNT,		
+						ORD_PRICE)
+			VALUES ( #{ord_no},
+			         #{customer},
+				     sysdate,
+				     #{ord_goods},
+				     #{ord_cnt},
+				     #{ord_price}
+				)
+				
+</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
